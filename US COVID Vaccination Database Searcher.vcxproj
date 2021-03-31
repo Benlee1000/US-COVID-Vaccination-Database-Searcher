@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Database.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="US COVID Vaccination Database Searcher.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Database.h" />
+    <ClInclude Include="State.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
