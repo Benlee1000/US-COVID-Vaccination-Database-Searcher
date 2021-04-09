@@ -24,7 +24,11 @@ private:
 	State* states = new State[50];
 
 public:
+	// Create an enum class to help with displaying data
+	enum class displayType {allData, dosesDelivered, dosesDeliveredPer100k, dosesAdministered, dosesAdministeredPer100k, percentOfPopWithAtLeastOneDose};
+
 	bool loadData();
+	void displayData(int startIndex, int endIndex, displayType whatToDisplay);
 
 	// Deallocate memory when program ends
 	~Database();

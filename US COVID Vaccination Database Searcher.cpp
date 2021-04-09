@@ -1,5 +1,4 @@
-// US COVID Vaccination Database Searcher.cpp
-
+// US COVID Vaccination Database Searcher
 #include <iostream>
 #include "Database.h"
 using namespace std;
@@ -7,7 +6,7 @@ using namespace std;
 int main()
 {
     Database database; 
-    string respone;
+    string response;
     string stringContinueRunning;
     bool continueRunning = true;
 
@@ -15,10 +14,37 @@ int main()
 
     cout << "Welcome to the COVID-19 Vaccination Database Searcher\n";
     do
-    {
-        
-        cout << "What would you like to know? \n";
-        cin >> respone;
+    {   
+        cout << "What would you like to do? (Enter a number) \n"
+             << "1: Display all information for all 50 states \n"
+             << "2: Display all information for a specific state \n"
+             << "3: Display information for all states in a specific order \n"
+             << "4: Learn how to update the database searcher \n";
+        cin >> response;
+        while (response != "1" && response != "2" && response != "3" && response != "4")
+        {
+            cout << "ERROR: Please enter a number (1-4)\n";
+            cin >> response;
+        }
+
+        switch (stoi(response))
+        {
+            // Display all information 
+            case 1:
+                break;
+            // Display a state's information
+            case 2:
+                break;
+            // Display information in order
+            case 3:
+                break;
+            // Display how to update the database searcher
+            case 4:
+                break;
+            default:
+                cout << "ERROR: You must enter a number (1-4)\n";
+                break;
+        }
 
         // Ask if the user wants to continue using the searcher and check if input is valid
         cout << "Would you like to continue using the database searcher? (Yes/No): ";

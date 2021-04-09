@@ -51,6 +51,31 @@ bool Database::loadData()
 	return true;
 }
 
+void Database::displayData(int startIndex, int endIndex, Database::displayType whatToDisplay)
+{
+	// loop through all states in question, displaying appropriate data
+	for (int index = 0, startIndex; index < endIndex; index++)
+	{
+		switch (whatToDisplay)
+		{
+			case Database::displayType::allData:
+				break;
+			case Database::displayType::dosesDelivered:
+				break;
+			case Database::displayType::dosesDeliveredPer100k:
+				break;
+			case Database::displayType::dosesAdministered:
+				break;
+			case Database::displayType::dosesAdministeredPer100k:
+				break;
+			case Database::displayType::percentOfPopWithAtLeastOneDose:
+				break;
+			default:
+				break;
+		}
+	}
+}
+
 Database::~Database()
 {
 	delete[] states;
