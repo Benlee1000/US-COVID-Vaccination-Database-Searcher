@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include "State.h"
+#include "GlobalConstants.h"
 using namespace std;
 
 class Database
@@ -20,8 +21,10 @@ private:
 	// File pointer
 	fstream fin;
 
+protected:
 	// Create an array of states to organize/search later
 	State* states = new State[50];
+
 
 public:
 	// Create an enum class to help with displaying data

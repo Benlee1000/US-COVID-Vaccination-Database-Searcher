@@ -53,24 +53,38 @@ bool Database::loadData()
 
 void Database::displayData(int startIndex, int endIndex, Database::displayType whatToDisplay)
 {
+	// If a state is not found, -1 will be returned by the findState function
+	if (startIndex == -1)
+	{
+		cout << "ERROR, state not found\n";
+		return;
+	}
+
 	// loop through all states in question, displaying appropriate data
-	for (int index = 0, startIndex; index < endIndex; index++)
+	for (int index = startIndex; index < endIndex; index++)
 	{
 		switch (whatToDisplay)
 		{
 			case Database::displayType::allData:
+				cout << "|" << states[index].getState() << "|\nTotal Doses Delivered: " << states[index].getDosesDelivered() << "\nDoses Delivered Per 100k: " << states[index].getDosesDeliveredPer100k() << "\nTotal Doses Administed: " << states[index].getDosesAdministered() << "\nDoses administered per 100k: " << states[index].getDosesAdministeredPer100k() << "\nPercent of Population With At Least One Dose: " << states[index].getPercentOfPopWithAtLeastOneDose() << "\n\n";
 				break;
 			case Database::displayType::dosesDelivered:
+				cout << "|" << states[index].getState() << "| Total Doses Delivered: " << states[index].getDosesDelivered() << "\n";
 				break;
 			case Database::displayType::dosesDeliveredPer100k:
+				cout << "|" << states[index].getState() << "| Doses Delivered Per 100k: " << states[index].getDosesDeliveredPer100k() << "\n";
 				break;
 			case Database::displayType::dosesAdministered:
+				cout << "|" << states[index].getState() << "| Total Doses Administered: " << states[index].getDosesAdministered() << "\n";
 				break;
 			case Database::displayType::dosesAdministeredPer100k:
+				cout << "|" << states[index].getState() << "| Doses Administered Per 100k: " << states[index].getDosesAdministeredPer100k() << "\n";
 				break;
 			case Database::displayType::percentOfPopWithAtLeastOneDose:
+				cout << "|" << states[index].getState() << "| Percent Of Population With At Least One Dose: " << states[index].getPercentOfPopWithAtLeastOneDose() << "\n";
 				break;
 			default:
+				cout << "ERROR: Incorrect display type\n";
 				break;
 		}
 	}

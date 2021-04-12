@@ -1,13 +1,15 @@
 // US COVID Vaccination Database Searcher
 #include <iostream>
 #include "Database.h"
+#include "DatabaseOrganizer.h"
 using namespace std;
 
 int main()
 {
     Database database; 
-    string response;
-    string stringContinueRunning;
+    DatabaseOrganizer databaseOrganizer;
+    string response, stateResponse, stringContinueRunning;
+    int stateSearchIndex;
     bool continueRunning = true;
 
     database.loadData();
@@ -31,9 +33,14 @@ int main()
         {
             // Display all information 
             case 1:
+                database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
                 break;
             // Display a state's information
             case 2:
+                cout << "Which state would you like to display information for? ";
+                cin >> stateResponse;
+                stateSearchIndex = databaseOrganizer.findState(stateResponse);
+                database.displayData(stateSearchIndex, stateSearchIndex + 1, Database::displayType::allData);
                 break;
             // Display information in order
             case 3:

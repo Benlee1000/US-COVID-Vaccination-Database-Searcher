@@ -140,11 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Database.cpp" />
+    <ClCompile Include="DatabaseOrganizer.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="US COVID Vaccination Database Searcher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Database.h" />
+    <ClInclude Include="DatabaseOrganizer.h" />
+    <ClInclude Include="GlobalConstants.h" />
     <ClInclude Include="State.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
