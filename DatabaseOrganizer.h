@@ -5,12 +5,12 @@
 
 using namespace std;
 
-class DatabaseOrganizer : public Database
+class DatabaseOrganizer 
 {
 private:
 	int stateSearchIndex;
 
 public:
-	int findState(string stateName);
+	int findState(string stateName, Database database);
 };
 

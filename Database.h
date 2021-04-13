@@ -10,6 +10,7 @@ using namespace std;
 
 class Database
 {
+	friend class DatabaseOrganizer;
 private: 
 	vector<string> row;
 	string line, word;
@@ -21,12 +22,12 @@ private:
 	// File pointer
 	fstream fin;
 
-protected:
 	// Create an array of states to organize/search later
-	State* states = new State[50];
-
+	State states[50];
 
 public:
+	
+
 	// Create an enum class to help with displaying data
 	enum class displayType {allData, dosesDelivered, dosesDeliveredPer100k, dosesAdministered, dosesAdministeredPer100k, percentOfPopWithAtLeastOneDose};
 

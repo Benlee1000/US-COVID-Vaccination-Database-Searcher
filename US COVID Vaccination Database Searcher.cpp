@@ -39,7 +39,7 @@ int main()
             case 2:
                 cout << "Which state would you like to display information for? ";
                 cin >> stateResponse;
-                stateSearchIndex = databaseOrganizer.findState(stateResponse);
+                stateSearchIndex = databaseOrganizer.findState(stateResponse, database);
                 database.displayData(stateSearchIndex, stateSearchIndex + 1, Database::displayType::allData);
                 break;
             // Display information in order
