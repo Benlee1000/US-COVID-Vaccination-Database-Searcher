@@ -11,6 +11,6 @@ private:
 	int stateSearchIndex;
 
 public:
-	int findState(string stateName, Database database);
+	int findState(string stateName, Database &database);
 };
 

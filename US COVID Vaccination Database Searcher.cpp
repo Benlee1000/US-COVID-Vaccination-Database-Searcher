@@ -22,11 +22,11 @@ int main()
              << "2: Display all information for a specific state \n"
              << "3: Display information for all states in a specific order \n"
              << "4: Learn how to update the database searcher \n";
-        cin >> response;
+        getline(cin, response);
         while (response != "1" && response != "2" && response != "3" && response != "4")
         {
             cout << "ERROR: Please enter a number (1-4)\n";
-            cin >> response;
+            getline(cin, response);
         }
 
         switch (stoi(response))
@@ -38,7 +38,7 @@ int main()
             // Display a state's information
             case 2:
                 cout << "Which state would you like to display information for? ";
-                cin >> stateResponse;
+                getline(std::cin, stateResponse); // Allows for spaces!
                 stateSearchIndex = databaseOrganizer.findState(stateResponse, database);
                 database.displayData(stateSearchIndex, stateSearchIndex + 1, Database::displayType::allData);
                 break;
@@ -47,6 +47,10 @@ int main()
                 break;
             // Display how to update the database searcher
             case 4:
+                cout << "1: Navigate to 'https://covid.cdc.gov/covid-data-tracker/#vaccinations'\n";
+                cout << "2: Click on 'Data Table for COVID-19 Vaccinations in the United States' near the bottom of the page\n";
+                cout << "3: Press 'Download Data', and be sure the file is named 'covid19_vaccinations_in_the_united_states.csv'\n";
+                cout << "4: Insert the new downloaded csv file into the 'database_files' folder, replacing the old version\n";
                 break;
             default:
                 cout << "ERROR: You must enter a number (1-4)\n";
@@ -55,11 +59,11 @@ int main()
 
         // Ask if the user wants to continue using the searcher and check if input is valid
         cout << "Would you like to continue using the database searcher? (Yes/No): ";
-        cin >> stringContinueRunning;
+        getline(cin, stringContinueRunning);
         while (stringContinueRunning != "Yes" && stringContinueRunning != "yes" && stringContinueRunning != "No" && stringContinueRunning != "no")
         {
             cout << "ERROR: Please enter a valid respone(Yes/No): ";
-            cin >> stringContinueRunning;
+            getline(cin, stringContinueRunning);
         }
         cout << "\n";
         // End the program when the user answers "No" or "no"

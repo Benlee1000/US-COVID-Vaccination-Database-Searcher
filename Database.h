@@ -13,7 +13,8 @@ class Database
 	friend class DatabaseOrganizer;
 private: 
 	vector<string> row;
-	string line, word;
+	string line, word, firstWord;
+	bool startReading = false;
 
 	// Keep track of current row, state
 	int rowNum = 1; 
@@ -33,9 +34,6 @@ public:
 
 	bool loadData();
 	void displayData(int startIndex, int endIndex, displayType whatToDisplay);
-
-	// Deallocate memory when program ends
-	~Database();
 	
 };
 
