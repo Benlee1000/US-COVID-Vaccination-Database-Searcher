@@ -10,14 +10,15 @@ using namespace std;
 
 class Database
 {
+	// Allow DatabaseOrganizer to access array of states
 	friend class DatabaseOrganizer;
+
 private: 
 	vector<string> row;
-	string line, word, firstWord;
+	string line, word;
 	bool startReading = false;
 
-	// Keep track of current row, state
-	int rowNum = 1; 
+	// Keep track of current state
 	int stateIndex = 0;
 
 	// File pointer
@@ -27,7 +28,6 @@ private:
 	State states[50];
 
 public:
-	
 
 	// Create an enum class to help with displaying data
 	enum class displayType {allData, dosesDelivered, dosesDeliveredPer100k, dosesAdministered, dosesAdministeredPer100k, percentOfPopWithAtLeastOneDose};
