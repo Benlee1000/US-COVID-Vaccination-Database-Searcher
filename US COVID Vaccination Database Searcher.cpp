@@ -19,6 +19,9 @@ int main()
         exit(1);
     }
 
+    //databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::dosesDeliveredPer100k);
+    databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+
     cout << "Welcome to the COVID-19 Vaccination Database Searcher\n";
     do
     {   
