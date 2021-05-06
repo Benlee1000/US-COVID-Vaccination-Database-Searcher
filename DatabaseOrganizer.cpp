@@ -14,7 +14,7 @@ int DatabaseOrganizer::findState(string stateName, Database &database)
 
 void DatabaseOrganizer::sortStates(int startIndex, int endIndex, Database &database, DatabaseOrganizer::sortType whatToSort)
 {
-	// When startIndex is less than endIndex, the sort is finished!
+	// When endIndex is greater than or equal to startIndex, the sort is finished!
 	if (startIndex < endIndex) 
 	{
 		pivotIndex = startIndex;
@@ -24,49 +24,53 @@ void DatabaseOrganizer::sortStates(int startIndex, int endIndex, Database &datab
 			switch (whatToSort)
 			{
 				case DatabaseOrganizer::sortType::stateName:
+					// For alphabetical order, this if statement needs to be reversed
 					if (database.states[currentStateIndex].getState() < database.states[pivotIndex].getState())
 					{
-						lessThanPivot = true;
+						greaterThanPivot = true;
 					}
 					break;
 				case DatabaseOrganizer::sortType::dosesDelivered:
-					if (database.states[currentStateIndex].getDosesDelivered() < database.states[pivotIndex].getDosesDelivered())
+					if (database.states[currentStateIndex].getDosesDelivered() > database.states[pivotIndex].getDosesDelivered())
 					{
-						lessThanPivot = true;
+						greaterThanPivot = true;
 					}
 					break;
 				case DatabaseOrganizer::sortType::dosesDeliveredPer100k:
-					if (database.states[currentStateIndex].getDosesDeliveredPer100k() < database.states[pivotIndex].getDosesDeliveredPer100k())
+					if (database.states[currentStateIndex].getDosesDeliveredPer100k() > database.states[pivotIndex].getDosesDeliveredPer100k())
 					{
-						lessThanPivot = true;
+						greaterThanPivot = true;
 					}
 					break;
 				case DatabaseOrganizer::sortType::dosesAdministered:
-					if (database.states[currentStateIndex].getDosesAdministered() < database.states[pivotIndex].getDosesAdministered())
+					if (database.states[currentStateIndex].getDosesAdministered() > database.states[pivotIndex].getDosesAdministered())
 					{
-						lessThanPivot = true;
+						greaterThanPivot = true;
 					}
 					break;
 				case DatabaseOrganizer::sortType::dosesAdministeredPer100k:
-					if (database.states[currentStateIndex].getDosesAdministeredPer100k() < database.states[pivotIndex].getDosesAdministeredPer100k())
+					if (database.states[currentStateIndex].getDosesAdministeredPer100k() > database.states[pivotIndex].getDosesAdministeredPer100k())
 					{
-						lessThanPivot = true;
+						greaterThanPivot = true;
 					}
 					break;
 				case DatabaseOrganizer::sortType::percentOfPopWithAtLeastOneDose:
-					if (database.states[currentStateIndex].getPercentOfPopWithAtLeastOneDose() < database.states[pivotIndex].getPercentOfPopWithAtLeastOneDose())
+					if (database.states[currentStateIndex].getPercentOfPopWithAtLeastOneDose() > database.states[pivotIndex].getPercentOfPopWithAtLeastOneDose())
 					{
-						lessThanPivot = true;
+						greaterThanPivot = true;
 					}
 					break;
 				default:
 					break;
 			}
-			if (lessThanPivot)
+			if (greaterThanPivot)
 			{
 				swapState(database.states[pivotIndex + 1], database.states[currentStateIndex]);
 				swapState(database.states[pivotIndex], database.states[pivotIndex + 1]);
 				pivotIndex++;
+
+				// Reset the pivot boolean
+				greaterThanPivot = false;
 
 				// Simailar to:
 				// swap(anArray[pivotIndex + 1], anArray[i]);
@@ -81,9 +85,6 @@ void DatabaseOrganizer::sortStates(int startIndex, int endIndex, Database &datab
 		// quickSort(theArray, first, pivotIndex - 1) 
 		// quickSort(theArray, pivotIndex + 1, last)
 	}
-
-
-
 }
 
 void DatabaseOrganizer::swapState(State& state1, State& state2)

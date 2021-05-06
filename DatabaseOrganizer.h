@@ -17,7 +17,7 @@ private:
 	// Temporary values for sorting states
 	int pivotIndex;
 	int currentStateIndex;
-	bool lessThanPivot = false;
+	bool greaterThanPivot = false;
 
 public:
 	// Create an enum class to help with organizing data

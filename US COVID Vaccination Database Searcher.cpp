@@ -8,7 +8,7 @@ int main()
 {
     Database database; 
     DatabaseOrganizer databaseOrganizer;
-    string response, stateResponse, stringContinueRunning;
+    string response, stateResponse, sortResponse, stringContinueRunning;
     int stateSearchIndex;
     bool continueRunning = true;
 
@@ -19,7 +19,7 @@ int main()
         exit(1);
     }
 
-    //databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::dosesDeliveredPer100k);
+    // Put the states in alphabetical order, if they are not already
     databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
 
     cout << "Welcome to the COVID-19 Vaccination Database Searcher\n";
@@ -28,7 +28,7 @@ int main()
         cout << "What would you like to do? (Enter a number)\n"
              << "1: Display all information for all 50 states\n"
              << "2: Display all information for a specific state\n"
-             << "3: Display information for all states in a specific order\n"
+             << "3: Display information for all states in a specific order\n" // Display top 5?
              << "4: Learn how to update the database searcher\n";
         getline(cin, response);
         while (response != "1" && response != "2" && response != "3" && response != "4")
@@ -52,8 +52,62 @@ int main()
                 database.displayData(stateSearchIndex, stateSearchIndex + 1, Database::displayType::allData);
                 break;
 
-            // Display information in order
+            // Display information in a specific order
             case 3:
+                cout << "\nHow would you like to sort them? (Enter a number)\n"
+                    << "1: By Total Doses Delivered\n"
+                    << "2: By Doses Delivered Per 100k\n" 
+                    << "3: By Total Doses Administered\n"
+                    << "4: By Doses Administered Per 100k\n"
+                    << "5: By Percent Of Population With At Least One Dose\n";
+                getline(cin, sortResponse);
+                while (sortResponse != "1" && sortResponse != "2" && sortResponse != "3" && sortResponse != "4" && sortResponse != "5")
+                {
+                    cout << "ERROR, Please enter a number (1-5): ";
+                    getline(cin, sortResponse);
+                }
+
+                switch(stoi(sortResponse))
+                {
+                    // Organize by Doses Delivered
+                    case 1:
+                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::dosesDelivered);
+                        database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
+                        // Sort back into alphabetical order for the binary search
+                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+                        break;
+                    
+                    // Organize by Doses Delivered Per 100k
+                    case 2:
+                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::dosesDeliveredPer100k);
+                        database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
+                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+                        break;
+
+                    // Organize by Doses Administered
+                    case 3:
+                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::dosesAdministered);
+                        database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
+                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+                        break;
+
+                    // Organize by Doses Administered Per 100k
+                    case 4:
+                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::dosesAdministeredPer100k);
+                        database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
+                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+                        break;
+
+                    // Organize by Percent Of Population With At Least One Dose
+                    case 5:
+                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::percentOfPopWithAtLeastOneDose);
+                        database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
+                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+                        break;
+
+                    default:
+                        break;
+                }
                 break;
 
             // Display how to update the database searcher
