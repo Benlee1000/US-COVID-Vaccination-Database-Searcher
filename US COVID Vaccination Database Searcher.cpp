@@ -19,8 +19,8 @@ int main()
         exit(1);
     }
 
-    // Put the states in alphabetical order, if they are not already
-    databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+    // Make sure the states are in alphabetical order, so it can be binary searched
+    databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::stateName);
 
     cout << "Welcome to the COVID-19 Vaccination Database Searcher\n";
     do
@@ -47,8 +47,13 @@ int main()
             // Display a state's information
             case 2:
                 cout << "Which state would you like to display information for? ";
-                getline(std::cin, stateResponse); // Allows for spaces!
-                stateSearchIndex = databaseOrganizer.findState(stateResponse, database);
+                getline(cin, stateResponse); // Allows for spaces!
+                while (!database.isAState(stateResponse))
+                {
+                    cout << "ERROR, please enter a valid state name (case sensitive): ";
+                    getline(cin, stateResponse);
+                }
+                stateSearchIndex = databaseOrganizer.findState(0, DATABASE_SIZE-1, stateResponse, database);
                 database.displayData(stateSearchIndex, stateSearchIndex + 1, Database::displayType::allData);
                 break;
 
@@ -71,38 +76,38 @@ int main()
                 {
                     // Organize by Doses Delivered
                     case 1:
-                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::dosesDelivered);
+                        databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::dosesDelivered);
                         database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
                         // Sort back into alphabetical order for the binary search
-                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+                        databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::stateName);
                         break;
                     
                     // Organize by Doses Delivered Per 100k
                     case 2:
-                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::dosesDeliveredPer100k);
+                        databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::dosesDeliveredPer100k);
                         database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
-                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+                        databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::stateName);
                         break;
 
                     // Organize by Doses Administered
                     case 3:
-                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::dosesAdministered);
+                        databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::dosesAdministered);
                         database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
-                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+                        databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::stateName);
                         break;
 
                     // Organize by Doses Administered Per 100k
                     case 4:
-                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::dosesAdministeredPer100k);
+                        databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::dosesAdministeredPer100k);
                         database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
-                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+                        databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::stateName);
                         break;
 
                     // Organize by Percent Of Population With At Least One Dose
                     case 5:
-                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::percentOfPopWithAtLeastOneDose);
+                        databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::percentOfPopWithAtLeastOneDose);
                         database.displayData(0, DATABASE_SIZE, Database::displayType::allData);
-                        databaseOrganizer.sortStates(0, 49, database, DatabaseOrganizer::sortType::stateName);
+                        databaseOrganizer.sortStates(0, DATABASE_SIZE-1, database, DatabaseOrganizer::sortType::stateName);
                         break;
 
                     default:

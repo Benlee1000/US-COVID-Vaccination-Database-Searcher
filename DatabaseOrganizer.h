@@ -8,7 +8,8 @@ using namespace std;
 class DatabaseOrganizer 
 {
 private:
-	int stateSearchIndex;
+	// Temporary values for searching for a state
+	int middleIndex;
 
 	// Store temporary states, for swapping states
 	State tempState;
@@ -24,7 +25,7 @@ public:
 	enum class sortType { stateName, dosesDelivered, dosesDeliveredPer100k, dosesAdministered, dosesAdministeredPer100k, percentOfPopWithAtLeastOneDose };
 
 	// Finds and returns the index of the state requested
-	int findState(string stateName, Database &database);
+	int findState(int startIndex, int endINdex, string stateGoalName, Database& database);
 
 	// Quicksort algorithm to sort the states by a certain value
 	void sortStates(int startIndex, int endIndex, Database &database, sortType whatToSort);

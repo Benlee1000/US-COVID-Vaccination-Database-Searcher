@@ -1,15 +1,35 @@
 #include "DatabaseOrganizer.h"
 
-int DatabaseOrganizer::findState(string stateName, Database &database) 
+int DatabaseOrganizer::findState(int startIndex, int endIndex, string stateGoalName, Database &database) 
 {
-	for (stateSearchIndex = 0; stateSearchIndex < DATABASE_SIZE; stateSearchIndex++) 
+	// Use a binary search to find the requested state
+	middleIndex = (endIndex - startIndex) / 2 + startIndex;
+
+	// If the state name is equal to our goal, we are finished!
+	if (database.states[middleIndex].getState() == stateGoalName)
 	{
-		if (database.states[stateSearchIndex].getState() == stateName)
+		return middleIndex;
+	}
+
+	// When endIndex is greater than or equal to startIndex, the state was not found, so return -1
+	if (startIndex < endIndex)
+	{
+		// Search bottom half if goal < middleIndex
+		if (stateGoalName < database.states[middleIndex].getState())
 		{
-			return stateSearchIndex;
+			return findState(startIndex, middleIndex - 1, stateGoalName, database);
+		}
+		// Otherwise search top half
+		else
+		{
+			return findState(middleIndex + 1, endIndex, stateGoalName, database);
 		}
 	}
-	return -1;
+	else
+	{
+		return -1;
+	}
+
 }
 
 void DatabaseOrganizer::sortStates(int startIndex, int endIndex, Database &database, DatabaseOrganizer::sortType whatToSort)

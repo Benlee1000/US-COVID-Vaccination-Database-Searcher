@@ -6,7 +6,6 @@
  *			5 Doses Administered Per 100k
  *			9 Percent of Pop with at Least One Dose
  */
-
 #include "Database.h"
 
 bool Database::loadData()
@@ -40,7 +39,7 @@ bool Database::loadData()
 		}
 
 		// Only read rows that contain the usual 50 states
-		if (row[0] == "Alabama" || row[0] == "Alaska" || row[0] == "Arizona" || row[0] == "Arkansas" || row[0] == "California" || row[0] == "Colorado" || row[0] == "Connecticut" || row[0] == "Delaware" || row[0] == "Florida" || row[0] == "Georgia" || row[0] == "Hawaii" || row[0] == "Idaho" || row[0] == "Illinois" || row[0] == "Indiana" || row[0] == "Iowa" || row[0] == "Kansas" || row[0] == "Kentucky" || row[0] == "Louisiana" || row[0] == "Maine" || row[0] == "Maryland" || row[0] == "Massachusetts" || row[0] == "Michigan" || row[0] == "Minnesota" || row[0] == "Mississippi" || row[0] == "Missouri" || row[0] == "Montana" || row[0] == "Nebraska" || row[0] == "Nevada" || row[0] == "New Hampshire" || row[0] == "New Jersey" || row[0] == "New Mexico" || row[0] == "New York State" || row[0] == "North Carolina" || row[0] == "North Dakota" || row[0] == "Ohio" || row[0] == "Oklahoma" || row[0] == "Oregon" || row[0] == "Pennsylvania" || row[0] == "Rhode Island" || row[0] == "South Carolina" || row[0] == "South Dakota" || row[0] == "Tennessee" || row[0] == "Texas" || row[0] == "Utah" || row[0] == "Vermont" || row[0] == "Virginia" || row[0] == "Washington" || row[0] == "West Virginia" || row[0] == "Wisconsin" || row[0] == "Wyoming")
+		if (isAState(row[0]))
 		{
 			// Fill in information for each state, use stoi/stof when neccessary (for comparisons later)
 			states[stateIndex].setState(row[0]);
@@ -59,6 +58,17 @@ bool Database::loadData()
 	}
 	fin.close();
 	return true;
+}
+
+bool Database::isAState(string stateName)
+{
+	// Return true if the name matches a state
+	if (stateName == "Alabama" || stateName == "Alaska" || stateName == "Arizona" || stateName == "Arkansas" || stateName == "California" || stateName == "Colorado" || stateName == "Connecticut" || stateName == "Delaware" || stateName == "Florida" || stateName == "Georgia" || stateName == "Hawaii" || stateName == "Idaho" || stateName == "Illinois" || stateName == "Indiana" || stateName == "Iowa" || stateName == "Kansas" || stateName == "Kentucky" || stateName == "Louisiana" || stateName == "Maine" || stateName == "Maryland" || stateName == "Massachusetts" || stateName == "Michigan" || stateName == "Minnesota" || stateName == "Mississippi" || stateName == "Missouri" || stateName == "Montana" || stateName == "Nebraska" || stateName == "Nevada" || stateName == "New Hampshire" || stateName == "New Jersey" || stateName == "New Mexico" || stateName == "New York State" || stateName == "North Carolina" || stateName == "North Dakota" || stateName == "Ohio" || stateName == "Oklahoma" || stateName == "Oregon" || stateName == "Pennsylvania" || stateName == "Rhode Island" || stateName == "South Carolina" || stateName == "South Dakota" || stateName == "Tennessee" || stateName == "Texas" || stateName == "Utah" || stateName == "Vermont" || stateName == "Virginia" || stateName == "Washington" || stateName == "West Virginia" || stateName == "Wisconsin" || stateName == "Wyoming")
+	{
+		return true;
+	}
+
+	return false;
 }
 
 void Database::displayData(int startIndex, int endIndex, Database::displayType whatToDisplay)

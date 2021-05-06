@@ -25,13 +25,14 @@ private:
 	fstream fin;
 
 	// Create an array of states to organize/search later
-	State states[50];
+	State states[DATABASE_SIZE];
 
 public:
 	// Create an enum class to help with displaying data
 	enum class displayType {allData, dosesDelivered, dosesDeliveredPer100k, dosesAdministered, dosesAdministeredPer100k, percentOfPopWithAtLeastOneDose};
 
 	bool loadData();
+	bool isAState(string stateName);
 	void displayData(int startIndex, int endIndex, displayType whatToDisplay);
 	
 };
