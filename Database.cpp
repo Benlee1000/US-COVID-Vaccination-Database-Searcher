@@ -71,6 +71,17 @@ bool Database::isAState(string stateName)
 	return false;
 }
 
+string Database::commaSeparate(int numberToSeparate)
+{
+	stringNumberToSeparate = to_string(numberToSeparate);
+	charIndex = stringNumberToSeparate.length() - 3;
+	while (charIndex > 0) {
+		stringNumberToSeparate.insert(charIndex, ",");
+		charIndex -= 3;
+	}
+	return stringNumberToSeparate;
+}
+
 void Database::displayData(int startIndex, int endIndex, Database::displayType whatToDisplay)
 {
 	// If a state is not found, -1 will be returned by the findState function
@@ -89,19 +100,19 @@ void Database::displayData(int startIndex, int endIndex, Database::displayType w
 		switch (whatToDisplay)
 		{
 			case Database::displayType::allData:
-				cout << "|" << states[index].getState() << "|\nTotal Doses Delivered: " << states[index].getDosesDelivered() << "\nDoses Delivered Per 100k: " << states[index].getDosesDeliveredPer100k() << "\nTotal Doses Administed: " << states[index].getDosesAdministered() << "\nDoses Administered Per 100k: " << states[index].getDosesAdministeredPer100k() << "\nPercent of Population With At Least One Dose: " << states[index].getPercentOfPopWithAtLeastOneDose() << "%\n\n";
+				cout << "|" << states[index].getState() << "|\nTotal Doses Delivered: " << commaSeparate(states[index].getDosesDelivered()) << "\nDoses Delivered Per 100k: " << commaSeparate(states[index].getDosesDeliveredPer100k()) << "\nTotal Doses Administed: " << commaSeparate(states[index].getDosesAdministered()) << "\nDoses Administered Per 100k: " << commaSeparate(states[index].getDosesAdministeredPer100k()) << "\nPercent of Population With At Least One Dose: " << states[index].getPercentOfPopWithAtLeastOneDose() << "%\n\n";
 				break;
 			case Database::displayType::dosesDelivered:
-				cout << "|" << states[index].getState() << "|\nTotal Doses Delivered: " << states[index].getDosesDelivered() << "\n\n";
+				cout << "|" << states[index].getState() << "|\nTotal Doses Delivered: " << commaSeparate(states[index].getDosesDelivered()) << "\n\n";
 				break;
 			case Database::displayType::dosesDeliveredPer100k:
-				cout << "|" << states[index].getState() << "|\nDoses Delivered Per 100k: " << states[index].getDosesDeliveredPer100k() << "\n\n";
+				cout << "|" << states[index].getState() << "|\nDoses Delivered Per 100k: " << commaSeparate(states[index].getDosesDeliveredPer100k()) << "\n\n";
 				break;
 			case Database::displayType::dosesAdministered:
-				cout << "|" << states[index].getState() << "|\nTotal Doses Administered: " << states[index].getDosesAdministered() << "\n\n";
+				cout << "|" << states[index].getState() << "|\nTotal Doses Administered: " << commaSeparate(states[index].getDosesAdministered()) << "\n\n";
 				break;
 			case Database::displayType::dosesAdministeredPer100k:
-				cout << "|" << states[index].getState() << "|\nDoses Administered Per 100k: " << states[index].getDosesAdministeredPer100k() << "\n\n";
+				cout << "|" << states[index].getState() << "|\nDoses Administered Per 100k: " << commaSeparate(states[index].getDosesAdministeredPer100k()) << "\n\n";
 				break;
 			case Database::displayType::percentOfPopWithAtLeastOneDose:
 				cout << "|" << states[index].getState() << "|\nPercent Of Population With At Least One Dose: " << states[index].getPercentOfPopWithAtLeastOneDose() << "%\n\n";

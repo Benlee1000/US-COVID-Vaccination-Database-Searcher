@@ -24,6 +24,10 @@ private:
 	// File pointer
 	fstream fin;
 
+	// Variables to comma separate numbers
+	string stringNumberToSeparate;
+	int charIndex;
+
 	// Create an array of states to organize/search later
 	State states[DATABASE_SIZE];
 
@@ -33,6 +37,10 @@ public:
 
 	bool loadData();
 	bool isAState(string stateName);
+
+	// Separate a given number with commas
+	string commaSeparate(int numberToSeparate);
+
 	void displayData(int startIndex, int endIndex, displayType whatToDisplay);
 	
 };
