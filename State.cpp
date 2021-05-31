@@ -35,6 +35,26 @@ void State::setPercentOfPopWithAtLeastOneDose(float percentOfPopWithAtLeastOneDo
 	m_percentOfPopWithAtLeastOneDose = percentOfPopWithAtLeastOneDose;
 }
 
+void State::setPercentFullyVaccinated(float percentFullyVaccinated)
+{
+	m_percentFullyVaccinated = percentFullyVaccinated;
+}
+
+void State::setJandJDosesAdministered(int JandJDosesAdministered)
+{
+	m_JandJDosesAdministered = JandJDosesAdministered;
+}
+
+void State::setModernaDosesAdministered(int ModernaDosesAdministered) 
+{
+	m_ModernaDosesAdministered = ModernaDosesAdministered;
+}
+
+void State::setPfizerDosesAdministered(int PfizerDosesAdministered)
+{
+	m_PfizerDosesAdministered = PfizerDosesAdministered;
+}
+
 string State::getState() 
 {
 	return m_state;
@@ -64,3 +84,26 @@ float State::getPercentOfPopWithAtLeastOneDose()
 {
 	return m_percentOfPopWithAtLeastOneDose;
 }
+
+float State::getPercentFullyVaccinated() 
+{
+	return m_percentFullyVaccinated;
+}
+
+int State::getJandJDosesAdministered()
+{
+	return m_JandJDosesAdministered;
+}
+
+int State::getModernaDosesAdministered()
+{
+	return m_ModernaDosesAdministered;
+}
+
+int State::getPfizerDosesAdministered()
+{
+	return m_PfizerDosesAdministered;
+}
+
+
+

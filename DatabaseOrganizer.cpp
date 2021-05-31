@@ -27,6 +27,7 @@ int DatabaseOrganizer::findState(int startIndex, int endIndex, string stateGoalN
 	}
 	else
 	{
+		// Since the state name is verified before searching, this rarely ever happens. Therefore, it is the last thing we check for.
 		return -1;
 	}
 
@@ -80,6 +81,30 @@ void DatabaseOrganizer::sortStates(int startIndex, int endIndex, Database &datab
 						greaterThanPivot = true;
 					}
 					break;
+				case DatabaseOrganizer::sortType::percentFullyVaccinated:
+					if (database.states[currentStateIndex].getPercentFullyVaccinated() > database.states[pivotIndex].getPercentFullyVaccinated())
+					{
+						greaterThanPivot = true;
+					}
+					break;
+				case DatabaseOrganizer::sortType::JandJDosesAdministered:
+					if (database.states[currentStateIndex].getJandJDosesAdministered() > database.states[pivotIndex].getJandJDosesAdministered())
+					{
+						greaterThanPivot = true;
+					}
+					break;
+				case DatabaseOrganizer::sortType::ModernaDosesAdministered:
+					if (database.states[currentStateIndex].getModernaDosesAdministered() > database.states[pivotIndex].getModernaDosesAdministered())
+					{
+						greaterThanPivot = true;
+					}
+					break;
+				case DatabaseOrganizer::sortType::PfizerDosesAdministered:
+					if (database.states[currentStateIndex].getPfizerDosesAdministered() > database.states[pivotIndex].getPfizerDosesAdministered())
+					{
+						greaterThanPivot = true;
+					}
+					break;
 				default:
 					break;
 			}
@@ -122,6 +147,10 @@ void DatabaseOrganizer::replaceState(State& state1, State& state2)
 	state1.setDosesAdministered(state2.getDosesAdministered());
 	state1.setDosesAdministeredPer100k(state2.getDosesAdministeredPer100k());
 	state1.setPercentOfPopWithAtLeastOneDose(state2.getPercentOfPopWithAtLeastOneDose());
+	state1.setPercentFullyVaccinated(state2.getPercentFullyVaccinated());
+	state1.setJandJDosesAdministered(state2.getJandJDosesAdministered());
+	state1.setModernaDosesAdministered(state2.getModernaDosesAdministered());
+	state1.setPfizerDosesAdministered(state2.getPfizerDosesAdministered());
 }
 
 State DatabaseOrganizer::copyState(State& state)
@@ -132,6 +161,10 @@ State DatabaseOrganizer::copyState(State& state)
 	tempCopyState.setDosesAdministered(state.getDosesAdministered());
 	tempCopyState.setDosesAdministeredPer100k(state.getDosesAdministeredPer100k());
 	tempCopyState.setPercentOfPopWithAtLeastOneDose(state.getPercentOfPopWithAtLeastOneDose());
+	tempCopyState.setPercentFullyVaccinated(state.getPercentFullyVaccinated());
+	tempCopyState.setJandJDosesAdministered(state.getJandJDosesAdministered());
+	tempCopyState.setModernaDosesAdministered(state.getModernaDosesAdministered());
+	tempCopyState.setPfizerDosesAdministered(state.getPfizerDosesAdministered());
 
 	return tempCopyState;
 }

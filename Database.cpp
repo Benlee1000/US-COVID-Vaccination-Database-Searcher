@@ -5,6 +5,11 @@
  *          4 Total Doses Administered
  *			5 Doses Administered Per 100k
  *			9 Percent of Pop with at Least One Dose
+ * 
+ *			13 Percent Fully Vaccinated
+ *			20 J&J Doses Administered
+ *			21 Moderna Doses Administered
+ *			22 Pfizer Doses Administered
  */
 #include "Database.h"
 
@@ -48,6 +53,10 @@ bool Database::loadData()
 			states[stateIndex].setDosesAdministered(stoi(row[4]));
 			states[stateIndex].setDosesAdministeredPer100k(stoi(row[5]));
 			states[stateIndex].setPercentOfPopWithAtLeastOneDose(stof(row[9]));
+			states[stateIndex].setPercentFullyVaccinated(stof(row[13]));
+			states[stateIndex].setJandJDosesAdministered(stof(row[20]));
+			states[stateIndex].setModernaDosesAdministered(stof(row[21]));
+			states[stateIndex].setPfizerDosesAdministered(stof(row[22]));
 
 			//cout << row[0] << " Total Doses Delivered: " << row[1] << " Doses Delivered Per 100k: " << row[2] << " Total Doses Administed: " << row[4] << " Doses administered per 100k: " << row[5] << " Percent of Pop with at least one dose: " << row[9] << "\n";
 			//cout << states[stateIndex].getState() << " Total Doses Delivered: " << states[stateIndex].getDosesDelivered() << " Doses Delivered Per 100k: " << states[stateIndex].getDosesDeliveredPer100k() << " Total Doses Administed: " << states[stateIndex].getDosesAdministered() << " Doses administered per 100k: " << states[stateIndex].getDosesAdministeredPer100k() << " Percent of Pop with at least one dose: " << states[stateIndex].getPercentOfPopWithAtLeastOneDose() << "\n";
@@ -100,7 +109,16 @@ void Database::displayData(int startIndex, int endIndex, Database::displayType w
 		switch (whatToDisplay)
 		{
 			case Database::displayType::allData:
-				cout << "|" << states[index].getState() << "|\nTotal Doses Delivered: " << commaSeparate(states[index].getDosesDelivered()) << "\nDoses Delivered Per 100k: " << commaSeparate(states[index].getDosesDeliveredPer100k()) << "\nTotal Doses Administed: " << commaSeparate(states[index].getDosesAdministered()) << "\nDoses Administered Per 100k: " << commaSeparate(states[index].getDosesAdministeredPer100k()) << "\nPercent of Population With At Least One Dose: " << states[index].getPercentOfPopWithAtLeastOneDose() << "%\n\n";
+				cout << "|" << states[index].getState() << "|" 
+					 << "\nTotal Doses Delivered: " << commaSeparate(states[index].getDosesDelivered()) 
+					 << "\nDoses Delivered Per 100k: " << commaSeparate(states[index].getDosesDeliveredPer100k()) 
+					 << "\nTotal Doses Administed: " << commaSeparate(states[index].getDosesAdministered()) 
+					 << "\nJ&J Doses Administered: " << commaSeparate(states[index].getJandJDosesAdministered())
+					 << "\nModerna Doses Administered: " << commaSeparate(states[index].getModernaDosesAdministered())
+					 << "\nPfizer Doses Administered: " << commaSeparate(states[index].getPfizerDosesAdministered())
+					 << "\nDoses Administered Per 100k: " << commaSeparate(states[index].getDosesAdministeredPer100k()) 
+					 << "\nPercent of Population With At Least One Dose: " << states[index].getPercentOfPopWithAtLeastOneDose() << "%"
+					 << "\nPercent of Population Fully Vaccinated: " << states[index].getPercentFullyVaccinated() << "%\n\n";
 				break;
 			case Database::displayType::dosesDelivered:
 				cout << "|" << states[index].getState() << "|\nTotal Doses Delivered: " << commaSeparate(states[index].getDosesDelivered()) << "\n\n";
@@ -116,6 +134,18 @@ void Database::displayData(int startIndex, int endIndex, Database::displayType w
 				break;
 			case Database::displayType::percentOfPopWithAtLeastOneDose:
 				cout << "|" << states[index].getState() << "|\nPercent Of Population With At Least One Dose: " << states[index].getPercentOfPopWithAtLeastOneDose() << "%\n\n";
+				break;
+			case Database::displayType::percentFullyVaccinated:
+				cout << "|" << states[index].getState() << "|\nPercent Of Population Fully Vaccinated: " << states[index].getPercentFullyVaccinated() << "%\n\n";
+				break;
+			case Database::displayType::JandJDosesAdministered:
+				cout << "|" << states[index].getState() << "|\nJ&J Doses Administered: " << commaSeparate(states[index].getJandJDosesAdministered()) << "\n\n";
+				break;
+			case Database::displayType::ModernaDosesAdministered:
+				cout << "|" << states[index].getState() << "|\nModerna Doses Administered: " << commaSeparate(states[index].getModernaDosesAdministered()) << "\n\n";
+				break;
+			case Database::displayType::PfizerDosesAdministered:
+				cout << "|" << states[index].getState() << "|\nPfizer Doses Administered: " << commaSeparate(states[index].getPfizerDosesAdministered()) << "\n\n";
 				break;
 			default:
 				cout << "ERROR: Incorrect display type\n";

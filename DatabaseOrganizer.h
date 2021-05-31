@@ -22,7 +22,7 @@ private:
 
 public:
 	// Create an enum class to help with organizing data
-	enum class sortType { stateName, dosesDelivered, dosesDeliveredPer100k, dosesAdministered, dosesAdministeredPer100k, percentOfPopWithAtLeastOneDose };
+	enum class sortType { stateName, dosesDelivered, dosesDeliveredPer100k, dosesAdministered, dosesAdministeredPer100k, percentOfPopWithAtLeastOneDose, percentFullyVaccinated, JandJDosesAdministered, ModernaDosesAdministered, PfizerDosesAdministered };
 
 	// Finds and returns the index of the state requested
 	int findState(int startIndex, int endINdex, string stateGoalName, Database& database);
