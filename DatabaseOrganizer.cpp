@@ -1,6 +1,6 @@
 #include "DatabaseOrganizer.h"
 
-int DatabaseOrganizer::findState(int startIndex, int endIndex, string stateGoalName, Database &database) 
+int DatabaseOrganizer::findState(const int& startIndex, const int& endIndex, const string& stateGoalName, Database &database) 
 {
 	// Use a binary search to find the requested state
 	middleIndex = (endIndex - startIndex) / 2 + startIndex;
@@ -33,7 +33,7 @@ int DatabaseOrganizer::findState(int startIndex, int endIndex, string stateGoalN
 
 }
 
-void DatabaseOrganizer::sortStates(int startIndex, int endIndex, Database &database, DatabaseOrganizer::sortType whatToSort)
+void DatabaseOrganizer::sortStates(const int& startIndex, const int& endIndex, Database &database, const DatabaseOrganizer::sortType& whatToSort)
 {
 	// When endIndex is greater than or equal to startIndex, the sort is finished!
 	if (startIndex < endIndex) 
@@ -139,7 +139,7 @@ void DatabaseOrganizer::swapState(State& state1, State& state2)
 	replaceState(state2, tempState);
 }
 
-void DatabaseOrganizer::replaceState(State& state1, State& state2)
+void DatabaseOrganizer::replaceState(State& state1, State& state2) const
 {
 	state1.setState(state2.getState());
 	state1.setDosesDelivered(state2.getDosesDelivered());

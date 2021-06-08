@@ -25,16 +25,16 @@ public:
 	enum class sortType { stateName, dosesDelivered, dosesDeliveredPer100k, dosesAdministered, dosesAdministeredPer100k, percentOfPopWithAtLeastOneDose, percentFullyVaccinated, JandJDosesAdministered, ModernaDosesAdministered, PfizerDosesAdministered };
 
 	// Finds and returns the index of the state requested
-	int findState(int startIndex, int endINdex, string stateGoalName, Database& database);
+	int findState(const int& startIndex, const int& endIndex, const string& stateGoalName, Database& database);
 
 	// Quicksort algorithm to sort the states by a certain value
-	void sortStates(int startIndex, int endIndex, Database &database, sortType whatToSort);
+	void sortStates(const int& startIndex, const int& endIndex, Database &database, const sortType& whatToSort);
 
 	// Swap state1 and state2
 	void swapState(State &state1, State &state2);
 
 	// Replace the information in state1 with state2
-	void replaceState(State &state1, State &state2);
+	void replaceState(State &state1, State &state2) const;
 
 	// Return a copy of a state
 	State copyState(State& state);

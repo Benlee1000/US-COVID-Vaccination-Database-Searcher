@@ -19,28 +19,28 @@ private:
 public:
 	State();
 
-	// Set functions
-	void setState(string state);
-	void setDosesDelivered(int dosesDelivered);
-	void setDosesDeliveredPer100k(int dosesDeliveredPer100k);
-	void setDosesAdministered(int dosesAdministered);
-	void setDosesAdministeredPer100k(int dosesAdministeredPer100k);
-	void setPercentOfPopWithAtLeastOneDose(float percentOfPopWithAtLeastOneDose);
-	void setPercentFullyVaccinated(float percentFullyVaccinated);
-	void setJandJDosesAdministered(int JandJDosesAdministered);
-	void setModernaDosesAdministered(int ModernaDosesAdministered);
-	void setPfizerDosesAdministered(int PfizerDosesAdministered);
+	// Set functions, arguments passed by parameter reference since they are not modified
+	void setState(const string& state);
+	void setDosesDelivered(const int& dosesDelivered);
+	void setDosesDeliveredPer100k(const int& dosesDeliveredPer100k);
+	void setDosesAdministered(const int& dosesAdministered);
+	void setDosesAdministeredPer100k(const int& dosesAdministeredPer100k);
+	void setPercentOfPopWithAtLeastOneDose(const float& percentOfPopWithAtLeastOneDose);
+	void setPercentFullyVaccinated(const float& percentFullyVaccinated);
+	void setJandJDosesAdministered(const int& JandJDosesAdministered);
+	void setModernaDosesAdministered(const int& ModernaDosesAdministered);
+	void setPfizerDosesAdministered(const int& PfizerDosesAdministered);
 
-	// Get functions
+	// Get functions, constant functions because they change no values
 	string getState();
-	int getDosesDelivered();
-	int getDosesDeliveredPer100k();
-	int getDosesAdministered();
-	int getDosesAdministeredPer100k();
-	float getPercentOfPopWithAtLeastOneDose();
-	float getPercentFullyVaccinated();
-	int getJandJDosesAdministered();
-	int getModernaDosesAdministered();
-	int getPfizerDosesAdministered();
+	int getDosesDelivered() const;
+	int getDosesDeliveredPer100k() const;
+	int getDosesAdministered() const;
+	int getDosesAdministeredPer100k() const;
+	float getPercentOfPopWithAtLeastOneDose() const;
+	float getPercentFullyVaccinated() const;
+	int getJandJDosesAdministered() const;
+	int getModernaDosesAdministered() const;
+	int getPfizerDosesAdministered() const;
 };
 

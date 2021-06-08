@@ -36,12 +36,11 @@ public:
 	enum class displayType {allData, dosesDelivered, dosesDeliveredPer100k, dosesAdministered, dosesAdministeredPer100k, percentOfPopWithAtLeastOneDose, percentFullyVaccinated, JandJDosesAdministered, ModernaDosesAdministered, PfizerDosesAdministered};
 
 	bool loadData();
-	bool isAState(string stateName);
+	bool isAState(const string& stateName);
 
 	// Separate a given number with commas
-	string commaSeparate(int numberToSeparate);
+	string commaSeparate(const int& numberToSeparate);
 
-	void displayData(int startIndex, int endIndex, displayType whatToDisplay);
-	
+	void displayData(const int& startIndex, const int& endIndex, const displayType& whatToDisplay);
 };
 

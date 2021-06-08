@@ -69,7 +69,7 @@ bool Database::loadData()
 	return true;
 }
 
-bool Database::isAState(string stateName)
+bool Database::isAState(const string& stateName)
 {
 	// Return true if the name matches a state
 	if (stateName == "Alabama" || stateName == "Alaska" || stateName == "Arizona" || stateName == "Arkansas" || stateName == "California" || stateName == "Colorado" || stateName == "Connecticut" || stateName == "Delaware" || stateName == "Florida" || stateName == "Georgia" || stateName == "Hawaii" || stateName == "Idaho" || stateName == "Illinois" || stateName == "Indiana" || stateName == "Iowa" || stateName == "Kansas" || stateName == "Kentucky" || stateName == "Louisiana" || stateName == "Maine" || stateName == "Maryland" || stateName == "Massachusetts" || stateName == "Michigan" || stateName == "Minnesota" || stateName == "Mississippi" || stateName == "Missouri" || stateName == "Montana" || stateName == "Nebraska" || stateName == "Nevada" || stateName == "New Hampshire" || stateName == "New Jersey" || stateName == "New Mexico" || stateName == "New York State" || stateName == "North Carolina" || stateName == "North Dakota" || stateName == "Ohio" || stateName == "Oklahoma" || stateName == "Oregon" || stateName == "Pennsylvania" || stateName == "Rhode Island" || stateName == "South Carolina" || stateName == "South Dakota" || stateName == "Tennessee" || stateName == "Texas" || stateName == "Utah" || stateName == "Vermont" || stateName == "Virginia" || stateName == "Washington" || stateName == "West Virginia" || stateName == "Wisconsin" || stateName == "Wyoming")
@@ -80,7 +80,7 @@ bool Database::isAState(string stateName)
 	return false;
 }
 
-string Database::commaSeparate(int numberToSeparate)
+string Database::commaSeparate(const int& numberToSeparate)
 {
 	stringNumberToSeparate = to_string(numberToSeparate);
 	charIndex = stringNumberToSeparate.length() - 3;
@@ -91,7 +91,7 @@ string Database::commaSeparate(int numberToSeparate)
 	return stringNumberToSeparate;
 }
 
-void Database::displayData(int startIndex, int endIndex, Database::displayType whatToDisplay)
+void Database::displayData(const int& startIndex, const int& endIndex, const Database::displayType& whatToDisplay)
 {
 	// If a state is not found, -1 will be returned by the findState function
 	if (startIndex == -1)
