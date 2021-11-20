@@ -41,7 +41,7 @@ void DatabaseOrganizer::sortStates(const int& startIndex, const int& endIndex, D
 		pivotIndex = startIndex;
 		for (currentStateIndex = startIndex + 1; currentStateIndex <= endIndex; currentStateIndex++)
 		{
-			// Check if less than pivot depending on what to sort by
+			// Check if greater than pivot depending on what to sort by
 			switch (whatToSort)
 			{
 				case DatabaseOrganizer::sortType::stateName:
